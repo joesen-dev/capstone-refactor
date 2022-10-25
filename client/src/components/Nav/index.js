@@ -11,7 +11,7 @@ function Nav() {
 						<Link to="/orderHistory">Dashboard</Link>
 					</li>
 					<li className="mx-1">
-						<Link to="/orderHistory">Workouts</Link>
+						<Link to="/workouts">Workouts</Link>
 					</li>
 					<li className="mx-1">
 						<Link to="/profile">Profile</Link>
