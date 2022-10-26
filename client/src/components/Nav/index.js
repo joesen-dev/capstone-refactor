@@ -1,56 +1,53 @@
 import React from 'react';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
+import { Image, Flex, Button, HStack, chakra } from '@chakra-ui/react';
+import Logo from '../../assets/images/Capstone-logo60.png';
 
 function Nav() {
 	function showNavigation() {
 		if (Auth.loggedIn()) {
 			return (
-				<ul className="flex-row">
-					<li className="mx-1">
-						<Link to="/dashboard">Dashboard</Link>
-					</li>
-					<li className="mx-1">
-						<Link to="/workouts">Workouts</Link>
-					</li>
-					<li className="mx-1">
-						<Link to="/profile">Profile</Link>
-					</li>
-					<li className="mx-1">
-						{/* this is not using the Link component to logout or user and then refresh the application to the start */}
-						<a href="/" onClick={() => Auth.logout()}>
+				// Nav Items
+				<HStack as="nav" spacing="5">
+					<Link to="/dashboard">Dashboard</Link>
+					<Link to="/workouts">Workouts</Link>
+					<Link to="/profile">Profile</Link>
+					<Button>
+						<Link to="/" onClick={() => Auth.logout()}>
 							Logout
-						</a>
-					</li>
-				</ul>
+						</Link>
+					</Button>
+				</HStack>
 			);
 		} else {
 			return (
-				<ul className="flex-row">
-					<li className="mx-1">
+				// Call to action items
+				<HStack>
+					<Button>
 						<Link to="/signup">Signup</Link>
-					</li>
-					<li className="mx-1">
+					</Button>
+					<Button>
 						<Link to="/login">Login</Link>
-					</li>
-				</ul>
+					</Button>
+				</HStack>
 			);
 		}
 	}
 
 	return (
-		<header className="flex-row px-1">
-			<h1>
+		<chakra.header id="header">
+			<Flex w="100%" px="6" py="5" align="center" justify="space-between">
+				{/* // Logo */}
 				<Link to="/">
-					<span role="img" aria-label="shopping bag">
-						🛍️
-					</span>
-					Capstone
+					<HStack direction="row">
+						<Image src={Logo} h="40px" />
+						<span>Capstone</span>
+					</HStack>
 				</Link>
-			</h1>
-
-			<nav>{showNavigation()}</nav>
-		</header>
+				{showNavigation()}
+			</Flex>
+		</chakra.header>
 	);
 }
 
